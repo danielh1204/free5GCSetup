@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright © 2019 Intel Corporation
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  labels:
+    service: afservice
+  name: af
+  namespace: free5gc
+spec:
+  containers:
+  - securityContext:
+      privileged: false
+    name: af-container
+    image: af:latest
+    imagePullPolicy: Never
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "./entrypoint.sh" ]
+    resources:
+      requests:
+        memory: 1Gi
+      limits:
+        memory: 1Gi
+    ports:
+    - containerPort: 8050
+      name: cnca
+    ports:
+    - containerPort: 8051
+      name: nef
+  tolerations:
+  - key: node-role.kubernetes.io/master
+    operator: "Exists"
+    effect: "NoSchedule"
+  nodeSelector:
+    node.kubernetes.io/microk8s-worker: microk8s-worker
+  restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: afservice
+  labels:
+    service: afservice
+  namespace: free5gc
+spec:
+  type: NodePort
+  ports:
+  - port: 8050
+    targetPort: 8050
+    nodePort: 30050
+    protocol: TCP
+    name: cnca
+  - port: 8051
+    targetPort: 8051
+    protocol: TCP
+    name: nef   
+  selector:
+    service: afservice
+
