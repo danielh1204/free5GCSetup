@@ -30,7 +30,7 @@ global:
       ipAddress: 10.100.50.249
     service:
       ngap:
-        enabled: false
+        enabled: true
         name: amf-n2
         port: 38412
         nodeport: 31412
@@ -72,9 +72,9 @@ global:
     name: n6network
     type: ipvlan
     masterIf: eth1
-    subnetIP: 10.100.100.0
+    subnetIP: 10.0.2.0
     cidr: 24
-    gatewayIP: 10.100.100.1
+    gatewayIP: 10.0.2.1
     excludeIP: 10.100.100.254
   n9network:
     enabled: true
@@ -108,6 +108,36 @@ deployDbPython: true
 free5gc-nrf:
   db:
     enabled: false
+
+free5gc-upf:
+  upf1:
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ip_forward
+          value: "1"
+    n6if:
+      ipAddress: 10.0.2.100
+  upf2:
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ip_forward
+          value: "1"
+    n6if:
+      ipAddress: 10.0.2.101
+  upfb:
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ip_forward
+          value: "1"
+    n6if:
+      ipAddress: 10.0.2.102
+  upfb2:
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ip_forward
+          value: "1"
+    n6if:
+      ipAddress: 10.0.2.103
 
 # This section can be used to override the default values in the MongoDB chart
 mongodb:
