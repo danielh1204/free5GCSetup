@@ -214,7 +214,7 @@ smf:
             sNssaiUpfInfos:
               - sNssai:
                   sst: 1
-                  sd: 010203
+                  sd: 112233
                 dnnUpfInfoList:
                   - dnn: internet
                     pools:
