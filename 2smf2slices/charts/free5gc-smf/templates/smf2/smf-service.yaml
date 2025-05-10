@@ -14,7 +14,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "free5gc-smf.fullname" $ }}-service
+  name: {{ include "free5gc-smf.fullname" $ }}-{{ .name }}-service
   labels:
     {{- include "free5gc-smf.labels" $ | nindent 4 }}
     project: {{ $.Values.global.projectName }}

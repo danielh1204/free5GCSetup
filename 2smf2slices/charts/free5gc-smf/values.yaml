@@ -154,7 +154,7 @@ smf1:
             interfaces:
               - interfaceType: N3
                 endpoints:
-                  - 10.100.50.233
+                  - 192.168.56.170
                 networkInstances: 
                   - internet
               - interfaceType: N9
@@ -315,7 +315,7 @@ smf2:
             interfaces:
               - interfaceType: N3
                 endpoints:
-                  - 10.100.50.234
+                  - 192.168.56.171
                 networkInstances: 
                   - internet
               - interfaceType: N9

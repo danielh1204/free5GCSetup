@@ -40,7 +40,7 @@ spec:
               "gateway": [ "{{ $.Values.global.n4network.gatewayIP }}" ]
             }]'
         {{- end }}
-        checksum/config: {{ include (print $.Template.BasePath "/smf-configmap.yaml") $ | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/smf2/smf-configmap.yaml") $ | sha256sum }}
       labels:
         {{- include "free5gc-smf.selectorLabels" $ | nindent 8 }}
         project: {{ $.Values.global.projectName }}

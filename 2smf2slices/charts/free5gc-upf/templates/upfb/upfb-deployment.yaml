@@ -86,7 +86,7 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       nodeSelector:
-        {{- toYaml .nodeSelector | nindent 8 }}
+        node.kubernetes.io/microk8s-worker: microk8s-worker
       affinity:
         {{- toYaml .affinity | nindent 8 }}
       tolerations:
