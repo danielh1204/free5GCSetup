@@ -102,7 +102,7 @@ spec:
         projected:
           sources:
           - configMap:
-              name: {{ include "free5gc-smf.fullname" $ }}-configmap
+              name: {{ include "free5gc-smf.fullname" $ }}-{{ .name }}-configmap
               items:
               - key: smfcfg.yaml
                 path: smfcfg.yaml
