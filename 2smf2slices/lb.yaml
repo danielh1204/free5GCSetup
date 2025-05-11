@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    nf: upfb
+  ports:
+    - protocol: UDP
+      port: 2152
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.56.170
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service2
+spec:
+  selector:
+    nf: upfb2
+  ports:
+    - protocol: UDP
+      port: 2152
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.56.171
